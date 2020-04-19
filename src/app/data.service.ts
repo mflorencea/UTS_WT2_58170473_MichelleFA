@@ -7,7 +7,7 @@ import { MhsFormComponent } from './mhs-form/mhs-form.component';
   providedIn: 'root'
 })
 export class DataService {
-  baseUrl = 'https://crudcrud.com/api/e072d2c0e14d42c4b06fe8d69dfb6478' ; // berbeda untuk setiap mahasiswa - iya beda ko.
+  baseUrl = 'https://crudcrud.com/api/222ad7ed38784c1c943ba1a04d00e228' ; // berbeda untuk setiap mahasiswa - iya beda ko.
 
   constructor(private http: HttpClient) {}
 

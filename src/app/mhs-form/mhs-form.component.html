@@ -9,8 +9,12 @@
       placeholder="nama mahasiswa"
       name="mhsName"
       id="mhsName"
+      formControlName="nama"
       [(ngModel)]="mhs.mhsName"
     />
+    <mat-error *ngIf="nama.invalid && nama.touched">
+      nama tidak boleh kosong, Anda punya nama bukan?
+    </mat-error>
   </mat-form-field>
   <br />
   <mat-form-field appearance="outline">
@@ -20,9 +24,13 @@
       placeholder="asal SMA Anda"
       name="smaName"
       id="smaName"
+      formControlName="sma"
       [(ngModel)]="mhs.smaName"
     />
   </mat-form-field>
+  <mat-error *ngIf="sma.invalid && sma.touched">
+    asal SMA tidak boleh kosong, Anda pernah SMA kan?
+  </mat-error>
   <br />
   <mat-form-field appearance="outline">
     <mat-label>Domisili Tinggal</mat-label>
@@ -31,9 +39,13 @@
       placeholder="lokasi Anda tinggal sekarang, ex : Jakarta"
       name="domisil"
       id="domisili"
+      formControlName="domisili"
       [(ngModel)]="mhs.domisili"
     />
   </mat-form-field>
+  <mat-error *ngIf="domisili.invalid && domisili.touched">
+    domisili Anda tidak boleh kosong, bukankah Anda punya tempat tinggal?
+  </mat-error>
   <br />
   <mat-form-field appearance="outline">
     <mat-label>Tanggal Pendaftaran</mat-label>
@@ -42,9 +54,13 @@
       placeholder="tanggal hari ini. ex : 8 April 2020"
       name="tanggal"
       id="tanggal"
+      formControlName="tanggal"
       [(ngModel)]="mhs.tanggal"
     />
   </mat-form-field>
+  <mat-error *ngIf="tanggal.invalid && tanggal.touched">
+    tanggal harus diisi, setiap hari punya tanggalnya sendiri
+  </mat-error>
   <br />
 <!--
   <mat-form-field>
@@ -81,7 +97,7 @@
 
   <mat-form-field>
     <mat-label>Pilihan Jurusan</mat-label>
-    <mat-select name="jurusan" id="jurusan" [(ngModel)]="mhs.jurusan">
+    <mat-select name="jurusan" id="jurusan"  formControlName="jurusan" [(ngModel)]="mhs.jurusan">
       <mat-option value="Akuntansi">
         Akuntansi
       </mat-option>
@@ -102,6 +118,9 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+  <mat-error *ngIf="jurusan.invalid && jurusan.touched">
+    Anda wajib memilih jurusan, kuliah masa ga ada jurusan :]
+  </mat-error>
 
   <div class="buttons">
     <div *ngIf="update">

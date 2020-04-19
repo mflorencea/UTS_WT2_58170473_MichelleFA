@@ -9,7 +9,7 @@ import { ShellComponent } from './shell/shell.component';
 import { FirstComponentComponent } from './first-component/first-component.component';
 import { MhsFormComponent } from './mhs-form/mhs-form.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { Page404Component } from './page404/page404.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -98,7 +98,8 @@ import {MatTreeModule} from '@angular/material/tree';
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

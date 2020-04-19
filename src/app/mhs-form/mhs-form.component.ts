@@ -4,6 +4,7 @@ import { DataService } from '../data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
+import { FormBuilder, Validators } from 'angular/forms';
 
 /*
 interface JurusanNode {
@@ -32,23 +33,23 @@ const TREE_DATA: JurusanNode[] = [
   styleUrls: ['./mhs-form.component.scss']
 })
 export class MhsFormComponent implements OnInit {
-  mhs: Mhs = {
-    _id: '',
-    mhsName: '',
-    smaName: '',
-    jurusan: 'Akuntansi',
-    domisili: '',
-    tanggal: ''
-  };
-  id = null;
-  error = false;
-  update = true;
+  id: string;
+  update: boolean = false;
+  mhs: Mhs;
+  mhsForm = this.fb.group({
+    nama: ["", [Validators.required, Validators.minLength(5)]],
+    sma: ["", [Validators.required, Validators.minLength(3)]],
+    domisili: ["", [Validators.required, Validators.minLength(5)]],
+    tanggal: ["", [Validators.required, Validators.minLength(5)]],
+    jurusan:  ["", [Validators.required]],
+  })
 
   constructor(
     private snackBar : MatSnackBar,
     private ds: DataService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder
   ) {}
 
   openSnackBar(message: string, action: string)
@@ -65,6 +66,13 @@ export class MhsFormComponent implements OnInit {
         this.ds.getMhsId(this.id).subscribe(
           response => {
             this.mhs = response as Mhs;
+            this.update = true;
+
+            this.mhsForm.get("nama").setValue(this.mhs.mhsName);
+            this.mhsForm.get("sma").setValue(this.mhs.smaName);
+            this.mhsForm.get("domisili").setValue(this.mhs.domisili);
+            this.mhsForm.get("tanggal").setValue(this.mhs.tanggal);
+            this.mhsForm.get("jurusan").setValue(this.mhs.jurusan);
           },
           err => {
             console.log(err);
